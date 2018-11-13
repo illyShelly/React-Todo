@@ -21,13 +21,21 @@ deleteTodo = (id) => {
     todos: filtertodos
   })
 }
+addTodo = (newtodo) => {
+    newtodo.id = Math.random();
+    // new array from old one with spread operator and added new item
+    let newtodos = [...this.state.todos, newtodo];
+    this.setState({
+      todos: newtodos
+    })
+}
   render() {
     return (
       <div className="todo-app container">
         <h1 className="center blue-text">Todos</h1>
         {/* import other component with some props with property from state */}
         <Todos todos={this.state.todos} deleteTodo={this.deleteTodo}/>
-        <AddTodo />
+        <AddTodo addTodo={this.addTodo}/>
       </div>
     );
   }

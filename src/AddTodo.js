@@ -13,8 +13,15 @@ class AddTodo extends Component {
   handleSubmit = (event) => {
     // do not let page submited and refresh page
     // need function in Todos.js to handle change
+    // pass props with addTodo function to update state
     event.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.addTodo(this.state);
+    // to empty input after submitted
+    // and emptied rendered input as well 'html'
+    this.setState({
+      content: ''
+    })
   }
   render(){
     return(
@@ -23,7 +30,8 @@ class AddTodo extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>Add new todo:</label>
           {/* onChange handler controll when text in this field changes */}
-          <input type="text" onChange={this.handleChange} />
+          {/* value={this.state.content} to emptied the field */}
+          <input type="text" onChange={this.handleChange} value={this.state.content}/>
         </form>
       </div>
     )
